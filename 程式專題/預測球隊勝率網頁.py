@@ -104,13 +104,13 @@ if team_name1 and team_name2:
     def get_adjusted_win_rate(pm1, pm2):
         diff = abs(pm1 - pm2)
         if diff <= 5:
-            bonus = 0.10
+            bonus = 0.05
         elif diff <= 8:
-            bonus = 0.15
+            bonus = 0.10
         elif diff <= 10:
-            bonus = 0.20
+            bonus = 0.15
         else:
-            bonus = 0.30
+            bonus = 0.20
 
         base_home = 0.6
         base_away = 0.4
