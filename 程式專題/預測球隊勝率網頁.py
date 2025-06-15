@@ -103,7 +103,7 @@ if team_name1 and team_name2:
     # ===== 勝率計算 =====
     def get_adjusted_win_rate(pm1, pm2):
         diff = abs(pm1 - pm2)
-        if 4<diff <= 5:
+        if diff <= 5:
             bonus = 0.10
         elif diff <= 8:
             bonus = 0.15
