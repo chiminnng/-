@@ -64,7 +64,7 @@ def team_logo(team_name):
                 f"""
                 <div style="text-align: center;">
                     <img src="data:image/png;base64,{img_base64}" width="150"><br>
-                    <p style="font-size:16px; color: gray;">{chinese_name}</p>
+                    <p style="font-size:16px; color: black;">{chinese_name}</p>
                 </div>
                 """,
                 unsafe_allow_html=True
