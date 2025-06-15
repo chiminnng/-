@@ -64,7 +64,7 @@ def team_logo(team_name):
                 f"""
                 <div style="text-align: center;">
                     <img src="data:image/png;base64,{img_base64}" width="150"><br>
-                    <p style="font-size:16px; color: gray;">{zh_name}</p>
+                    <p style="font-size:16px; color: gray;">{chinese_name}</p>
                 </div>
                 """,
                 unsafe_allow_html=True
@@ -90,13 +90,13 @@ if team_name1 and team_name2:
     col1, col2 = st.columns(2)
     with col1:
         st.subheader(f"{team_name_mapping.get(team_name1, team_name1)} 球員平均正負值")
-        show_team_logo(team_name1)
+        team_logo(team_name1)
         st.dataframe(team1_df[['球員', '平均正負值']].set_index('球員'))
         st.write(f"**全隊平均正負值：** `{team1_avg:.2f}`")
 
     with col2:
         st.subheader(f"{team_name_mapping.get(team_name2, team_name2)} 球員平均正負值")
-        show_team_logo(team_name2)
+        team_logo(team_name2)
         st.dataframe(team2_df[['球員', '平均正負值']].set_index('球員'))
         st.write(f"**全隊平均正負值：** `{team2_avg:.2f}`")
 
