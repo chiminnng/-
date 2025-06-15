@@ -36,7 +36,7 @@ team_name_mapping = {
 }
 
 all_teams = sorted(df_all['球隊'].unique())
-chinese_team_to_en = {v: k for k, v in team_name_mapping.items()}
+chinese_team_to_english = {v: k for k, v in team_name_mapping.items()}
 chinese_team_list = [team_name_mapping.get(t, t) for t in all_teams]
 
 # ===== 選擇主場與客場 =====
@@ -46,20 +46,20 @@ with col1:
 with col2:
     chinese_team_name2 = st.selectbox("請選擇 **客場** 球隊：", chinese_team_list)
 
-team_name1 = chinese_team_to_en.get(chinese_team_name1, chinese_team_name1)
-team_name2 = chinese_team_to_en.get(chinese_team_name2, chinese_team_name2)
+team_name1 = chinese_team_to_english.get(chinese_team_name1, chinese_team_name1)
+team_name2 = chinese_team_to_english.get(chinese_team_name2, chinese_team_name2)
 
 def get_image_base64(image_path):
     with open(image_path, "rb") as img_file:
         return base64.b64encode(img_file.read()).decode()
 
-def show_team_logo(team_name):
+def team_logo(team_name):
     exts = ['.png', '.jpg']
     for ext in exts:
         logo_path = os.path.join(logo_dir, f"{team_name}{ext}")
         if os.path.exists(logo_path):
             img_base64 = get_image_base64(logo_path)
-            zh_name = team_name_mapping.get(team_name, team_name)
+            chinese_name = team_name_mapping.get(team_name, team_name)
             st.markdown(
                 f"""
                 <div style="text-align: center;">
@@ -101,7 +101,7 @@ if team_name1 and team_name2:
         st.write(f"**全隊平均正負值：** `{team2_avg:.2f}`")
 
     # ===== 勝率計算 =====
-    def get_adjusted_win_rate(pm1, pm2):
+    def win_rate(pm1, pm2):
         diff = abs(pm1 - pm2)
         if diff <= 5:
             bonus = 0.05
@@ -128,7 +128,7 @@ if team_name1 and team_name2:
         total = home_final + away_final
         return home_final / total, away_final / total
 
-    home_win_rate, away_win_rate = get_adjusted_win_rate(team1_avg, team2_avg)
+    home_win_rate, away_win_rate = win_rate(team1_avg, team2_avg)
 
     # ===== 顯示預測結果 =====
     st.subheader("勝率預測結果")
