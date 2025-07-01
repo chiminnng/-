@@ -81,7 +81,7 @@ def get_team_stats(team_name):
 if team_name1 and team_name2:
 
     if team_name1 == team_name2:
-        st.warning("請選擇不同的兩支球隊")
+        st.warning("請選擇兩支不同的球隊")
         st.stop()
 
     team1_df, team1_avg = get_team_stats(team_name1)
